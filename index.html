@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>모바일 명함</title>
+<meta name="description" content="글답리딩플러스학원 이명희 원장 · 통합 문해력 교육 전문가">
+<meta name="theme-color" content="#ffd29a">
+<meta property="og:title" content="이명희 원장 | 글답리딩플러스학원">
+<meta property="og:description" content="통합 문해력 교육 전문가 · 모바일 명함">
+<meta property="og:image" content="photo.png">
+<link rel="icon" href="photo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ====== 색상: 여기만 바꾸면 전체 분위기가 바뀝니다 ====== */
+  :root {
+    --brand: #ea580c;        /* 버튼·아이콘 주황 */
+    --accent: #f97316;       /* 포인트 주황 */
+    --hero-1: #fff4e6;       /* 헤더 그라데이션 시작 */
+    --hero-2: #ffd29a;       /* 헤더 그라데이션 끝 */
+    --hero-glow: #ffe98a;    /* 헤더 귀퉁이 레몬빛 */
+    --hero-text: #3b2310;
+    --bg: #fff8f1;
+    --card: #ffffff;
+    --surface: #fff3e6;
+    --line: #fbe1c8;
+    --text: #2b1d12;
+    --muted: #8a6a52;
+    --on-brand: #ffffff;
+    --shadow: 0 18px 50px rgba(234, 88, 12, .16);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --brand: #f97316; --accent: #fb923c;
+      --hero-1: #3a2112; --hero-2: #6b3410; --hero-glow: #8a5a10; --hero-text: #fff1e2;
+      --bg: #140d08; --card: #1e150f; --surface: #2a1d14; --line: #3c2a1d;
+      --text: #f6ebe1; --muted: #c4a58c; --shadow: 0 18px 50px rgba(0, 0, 0, .5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --brand: #f97316; --accent: #fb923c;
+    --hero-1: #3a2112; --hero-2: #6b3410; --hero-glow: #8a5a10; --hero-text: #fff1e2;
+    --bg: #140d08; --card: #1e150f; --surface: #2a1d14; --line: #3c2a1d;
+    --text: #f6ebe1; --muted: #c4a58c; --shadow: 0 18px 50px rgba(0,0,0,.5);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 440px; margin: 0 auto; padding: 16px 16px 40px; }
+  .card { background: var(--card); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
+
+  /* 헤더 */
+  .hero {
+    position: relative;
+    color: var(--hero-text);
+    background:
+      radial-gradient(90% 70% at 100% 0%, var(--hero-glow), transparent 65%),
+      linear-gradient(165deg, var(--hero-1), var(--hero-2));
+    padding: 20px 20px 24px;
+  }
+  .org { display: flex; align-items: center; gap: 12px; }
+  .org-logo {
+    height: 44px; border-radius: 12px; flex: none; padding: 8px 14px;
+    background: #fff; display: grid; place-items: center; overflow: hidden;
+    color: var(--brand); font-weight: 800; box-shadow: 0 4px 14px rgba(234, 88, 12, .15);
+  }
+  .org-logo img { height: 22px; width: auto; display: block; }
+  .org.has-logo .org-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .eyebrow { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; opacity: .7; font-weight: 700; }
+  .org-name { font-size: 17px; font-weight: 800; line-height: 1.25; }
+  .org-sub { font-size: 10.5px; letter-spacing: .14em; opacity: .6; font-weight: 700; }
+
+  .person { display: flex; align-items: center; gap: 16px; margin-top: 20px; }
+  .photo {
+    width: 112px; height: 112px; border-radius: 50%; flex: none; overflow: hidden;
+    background: rgba(255,255,255,.7); border: 3px solid #fff;
+    box-shadow: 0 6px 18px rgba(234, 88, 12, .2);
+    display: grid; place-items: center; font-size: 34px; font-weight: 800;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; transform: scale(1.08); }
+  .name { font-size: 28px; font-weight: 800; line-height: 1.15; margin: 0; word-break: keep-all; }
+  .name-en { font-size: 13px; font-weight: 700; letter-spacing: .06em; opacity: .75; margin-top: 2px; }
+  .role {
+    display: inline-block; margin-top: 10px; padding: 4px 10px; border-radius: 999px;
+    font-size: 12.5px; font-weight: 700;
+    background: var(--brand); color: var(--on-brand);
+  }
+  .tagline { margin: 18px 0 0; font-size: 14.5px; font-weight: 500; opacity: .92; word-break: keep-all; }
+
+  /* 본문 */
+  .body { padding: 20px 16px 8px; }
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+    font-weight: 700; margin: 0 4px 10px;
+  }
+  .row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px;
+    background: var(--card); margin-bottom: 8px; text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  a.row:hover { border-color: var(--accent); }
+  a.row:active { transform: scale(.985); }
+  .ico {
+    width: 36px; height: 36px; border-radius: 10px; flex: none; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--brand) 10%, var(--card)); color: var(--brand);
+  }
+  :root[data-theme="dark"] .ico { color: var(--accent); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ico { color: var(--accent); } }
+  .ico svg { width: 18px; height: 18px; }
+  .row-main { flex: 1; min-width: 0; }
+  .row-label { font-size: 11.5px; color: var(--muted); }
+  .row-value { font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+  .row-act { font-size: 12.5px; font-weight: 700; color: var(--accent); flex: none; }
+
+  .note { background: var(--surface); border-radius: 14px; padding: 14px 16px; }
+  .note ul { margin: 0; padding: 0; list-style: none; }
+  .note li { position: relative; padding-left: 14px; font-size: 14px; margin: 4px 0; word-break: keep-all; }
+  .note li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .note p { margin: 0; font-size: 14px; }
+
+  /* 하단 버튼 */
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 16px 20px; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    min-height: 48px; padding: 10px 12px; border-radius: 14px; border: 1px solid var(--line);
+    background: var(--card); color: var(--text); font: inherit; font-size: 14.5px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+  }
+  .btn svg { width: 18px; height: 18px; }
+  .btn.primary { background: var(--brand); color: var(--on-brand); border-color: transparent; grid-column: 1 / -1; }
+  .btn:active { transform: scale(.985); }
+
+  .foot { text-align: center; font-size: 11px; color: var(--muted); margin-top: 16px; letter-spacing: .08em; }
+
+  /* QR 모달 */
+  dialog {
+    border: none; border-radius: 20px; padding: 22px; width: min(320px, calc(100vw - 32px));
+    background: var(--card); color: var(--text); box-shadow: var(--shadow); text-align: center;
+  }
+  dialog::backdrop { background: rgba(10, 15, 22, .55); }
+  #qr { background: #fff; border-radius: 12px; padding: 12px; display: inline-block; }
+  #qr svg, #qr img { display: block; width: 220px; height: 220px; max-width: 100%; }
+  .qr-url { font-size: 12px; color: var(--muted); margin: 12px 0 14px; overflow-wrap: anywhere; }
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(20px);
+    background: var(--text); color: var(--card); padding: 10px 16px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 600; opacity: 0; transition: .2s; pointer-events: none;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <article class="card">
+    <header class="hero">
+      <div class="org" id="org">
+        <div class="org-logo" id="orgLogo"></div>
+        <div>
+          <div class="eyebrow" id="eyebrow"></div>
+          <div class="org-name" id="orgName"></div>
+          <div class="org-sub" id="orgSub"></div>
+        </div>
+      </div>
+      <div class="person">
+        <div class="photo" id="photo"></div>
+        <div>
+          <h1 class="name" id="name"></h1>
+          <div class="name-en" id="nameEn"></div>
+          <div class="role" id="role"></div>
+        </div>
+      </div>
+      <p class="tagline" id="tagline"></p>
+    </header>
+
+    <div class="body">
+      <section class="section" id="contactSec">
+        <h2 class="section-title">Contact</h2>
+        <div id="contacts"></div>
+      </section>
+      <section class="section" id="aboutSec">
+        <h2 class="section-title">Profile</h2>
+        <div class="note"><ul id="about"></ul></div>
+      </section>
+      <section class="section" id="addrSec">
+        <h2 class="section-title">Address</h2>
+        <div id="addr"></div>
+      </section>
+      <section class="section" id="snsSec">
+        <h2 class="section-title">SNS</h2>
+        <div id="sns"></div>
+      </section>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" id="saveBtn" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+        연락처 저장
+      </a>
+      <button class="btn" id="shareBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>
+        공유하기
+      </button>
+      <button class="btn" id="qrBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
+        QR 코드
+      </button>
+    </div>
+  </article>
+  <div class="foot" id="foot">MOBILE BUSINESS CARD</div>
+</main>
+
+<dialog id="qrDialog">
+  <div id="qr"></div>
+  <div class="qr-url" id="qrUrl"></div>
+  <button class="btn" type="button" style="width:100%" onclick="document.getElementById('qrDialog').close()">닫기</button>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* =====================================================================
+   명함 내용: 이 부분만 고치면 됩니다.
+   비워 두거나("") 지운 항목은 화면에 나오지 않습니다.
+   [대괄호] 안의 글자는 아직 정해지지 않은 자리표시입니다.
+   ===================================================================== */
+const CARD = {
+  name: "이명희",
+  familyName: "이",             // 연락처 저장 시 성
+  givenName: "명희",            // 연락처 저장 시 이름
+  nameEn: "Lee Myung Hee",
+  role: "원장",
+  org: "글답리딩플러스학원",
+  orgEn: "",
+  eyebrow: "",                  // 소속 위 작은 영문 문구 (예: 분야)
+  orgLogo: "logo.png",          // 로고 파일 경로, 비우면 소속 이름 글자로 표시
+  photo: "photo.png",           // 사진 파일 경로, 비우면 이름 첫 글자
+  tagline: "통합 문해력 교육 전문가",
+
+  phone: "010-2520-9946",
+  email: "leehappyi@naver.com",
+  website: "https://blog.naver.com/booktong_miracle",
+  websiteLabel: "블로그",
+  address: "경남 밀양시 새미리벌로 47 2층",
+  about: [
+    "20년 영어전문강사",
+    "10년 이상 독서논술교육전문가",
+  ],
+  sns: [
+    // { label: "Instagram", handle: "@아이디", url: "https://instagram.com/아이디" },
+  ],
+  booking: { label: "", url: "" },   // 예약/상담 링크 (선택)
+  siteUrl: "",                  // 배포 후 명함 주소. 비우면 현재 페이지 주소로 QR 생성
+  fileName: "lee-myunghee",     // 저장되는 .vcf 파일 이름
+};
+</script>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const isPh = (s) => /^\[.*\]$/.test((s || "").trim());
+  const ICONS = {
+    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+    mail: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',
+    web: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20 15.3 15.3 0 0 1 0-20"/>',
+    pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/>',
+    link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+    cal: '<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  };
+  const svg = (k) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const row = ({ icon, label, value, href, act, ext }) => {
+    const inner = `<span class="ico">${svg(icon)}</span><span class="row-main"><span class="row-label">${esc(label)}</span><div class="row-value">${esc(value)}</div></span>${act ? `<span class="row-act">${esc(act)}</span>` : ""}`;
+    if (!href) return `<div class="row">${inner}</div>`;
+    return `<a class="row" href="${esc(href)}"${ext ? ' target="_blank" rel="noopener"' : ""}>${inner}</a>`;
+  };
+  const setText = (id, v) => { const el = $(id); el.textContent = v || ""; el.hidden = !v; };
+  const C = CARD;
+
+  document.title = `${C.name} | 모바일 명함`;
+  setText("eyebrow", C.eyebrow); setText("orgName", C.org); setText("orgSub", C.orgEn);
+  $("org").hidden = !C.org && !C.orgLogo;
+  $("org").classList.toggle("has-logo", !!C.orgLogo);
+  $("orgLogo").innerHTML = C.orgLogo ? `<img src="${esc(C.orgLogo)}" alt="">` : esc((isPh(C.org) ? "" : C.org).slice(0, 1));
+  if (!C.orgLogo && (!C.org || isPh(C.org))) $("orgLogo").hidden = true;
+  $("photo").innerHTML = C.photo ? `<img src="${esc(C.photo)}" alt="${esc(C.name)} 사진">` : esc(isPh(C.name) ? "?" : C.name.slice(0, 1));
+  setText("name", C.name); setText("nameEn", C.nameEn); setText("role", C.role); setText("tagline", C.tagline);
+
+  const contacts = [];
+  if (C.phone) contacts.push(row({ icon: "phone", label: "휴대전화", value: C.phone, href: isPh(C.phone) ? "" : "tel:" + C.phone.replace(/[^\d+]/g, ""), act: "전화하기" }));
+  if (C.email) contacts.push(row({ icon: "mail", label: "이메일", value: C.email, href: isPh(C.email) ? "" : "mailto:" + C.email, act: "메일쓰기" }));
+  if (C.website) contacts.push(row({ icon: "web", label: C.websiteLabel || "웹사이트", value: C.website.replace(/^https?:\/\//, "").replace(/\/$/, "").replace(/\//g, "/​"), href: isPh(C.website) ? "" : C.website, act: "방문하기", ext: true }));
+  if (C.booking && C.booking.url) contacts.push(row({ icon: "cal", label: C.booking.label || "예약", value: "온라인 예약", href: C.booking.url, act: "예약하기", ext: true }));
+  $("contacts").innerHTML = contacts.join(""); $("contactSec").hidden = !contacts.length;
+
+  $("about").innerHTML = (C.about || []).filter(Boolean).map((t) => `<li>${esc(t)}</li>`).join("");
+  $("aboutSec").hidden = !(C.about || []).filter(Boolean).length;
+
+  $("addr").innerHTML = C.address ? row({ icon: "pin", label: "주소", value: C.address, href: isPh(C.address) ? "" : "https://map.naver.com/p/search/" + encodeURIComponent(C.address), act: "지도", ext: true }) : "";
+  $("addrSec").hidden = !C.address;
+
+  $("sns").innerHTML = (C.sns || []).map((s) => row({ icon: "link", label: s.label, value: s.handle || s.url, href: s.url, act: "보기", ext: true })).join("");
+  $("snsSec").hidden = !(C.sns || []).length;
+
+  // vCard (.vcf)
+  const vEsc = (s) => String(s).replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/([,;])/g, "\\$1");
+  const clean = (s) => (s && !isPh(s) ? s : "");
+  const pageUrl = C.siteUrl || (location.protocol.startsWith("http") ? location.href.split("#")[0] : "");
+  const v = ["BEGIN:VCARD", "VERSION:3.0"];
+  const nm = clean(C.name);
+  if (nm) {
+    const fam = C.familyName || "", giv = C.givenName || (fam ? "" : nm);
+    v.push(`N;CHARSET=UTF-8:${vEsc(fam)};${vEsc(giv)};;;`, `FN;CHARSET=UTF-8:${vEsc(nm)}`);
+  }
+  if (clean(C.org)) v.push(`ORG;CHARSET=UTF-8:${vEsc(C.org)}`);
+  if (clean(C.role)) v.push(`TITLE;CHARSET=UTF-8:${vEsc(C.role)}`);
+  if (clean(C.phone)) v.push(`TEL;TYPE=CELL:${C.phone.replace(/[^\d+]/g, "")}`);
+  if (clean(C.email)) v.push(`EMAIL;TYPE=INTERNET:${C.email}`);
+  if (clean(C.website)) v.push(`URL:${C.website}`);
+  else if (pageUrl) v.push(`URL:${pageUrl}`);
+  if (clean(C.address)) v.push(`ADR;CHARSET=UTF-8:;;${vEsc(C.address)};;;;`);
+  if (clean(C.tagline)) v.push(`NOTE;CHARSET=UTF-8:${vEsc(C.tagline)}`);
+  v.push("END:VCARD");
+  const blob = new Blob([v.join("\r\n") + "\r\n"], { type: "text/vcard;charset=utf-8" });
+  $("saveBtn").href = URL.createObjectURL(blob);
+  $("saveBtn").download = (C.fileName || "contact") + ".vcf";
+
+  const toast = (msg) => { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 1800); };
+
+  $("shareBtn").onclick = async () => {
+    const url = pageUrl || location.href;
+    if (navigator.share) { try { await navigator.share({ title: document.title, url }); } catch (e) {} return; }
+    try { await navigator.clipboard.writeText(url); toast("주소를 복사했어요"); } catch (e) { toast(url); }
+  };
+
+  $("qrBtn").onclick = () => {
+    const url = pageUrl || location.href;
+    if (typeof qrcode !== "function") { toast("QR을 불러오지 못했어요"); return; }
+    const q = qrcode(0, "M"); q.addData(url); q.make();
+    $("qr").innerHTML = q.createSvgTag({ cellSize: 6, margin: 0, scalable: true });
+    $("qrUrl").textContent = url;
+    $("qrDialog").showModal();
+  };
+  $("qrDialog").addEventListener("click", (e) => { if (e.target === $("qrDialog")) $("qrDialog").close(); });
+})();
+</script>
+</body>
+</html>
