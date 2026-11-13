@@ -127,7 +127,7 @@
 
   .note { background: var(--surface); border-radius: 14px; padding: 14px 16px; }
   .note ul { margin: 0; padding: 0; list-style: none; }
-  .note li { position: relative; padding-left: 14px; font-size: 14px; margin: 4px 0; word-break: keep-all; }
+  .note li { position: relative; padding-left: 14px; font-size: 14px; margin: 6px 0; word-break: keep-all; white-space: pre-line; line-height: 1.55; }
   .note li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
   .note p { margin: 0; font-size: 14px; }
 
@@ -256,7 +256,7 @@ const CARD = {
   websiteLabel: "블로그",
   address: "경남 밀양시 새미리벌로 47 2층",
   about: [
-    "독서와 글쓰기로 아이의 생각을 키우는 문해력 교육 전문가",
+    "독서와 글쓰기로 아이의 생각을 키우는\n문해력 교육 전문가",   // \n = 줄바꿈
     "영어 논술 지도",
     "초·중 1:1 및 그룹 학습·진로 코칭",
   ],
